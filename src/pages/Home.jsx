@@ -3,7 +3,7 @@ import Selection from "../components/Selection";
 
 const Home = () => {
   return (
-    <div className="relative">
+    <div className="relative px-3">
       <Hero />
       <Selection />
     </div>

