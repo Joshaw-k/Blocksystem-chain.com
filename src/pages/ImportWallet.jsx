@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useForm } from "@formspree/react";
 import { wallets } from "../utils/wallets";
-import FormSubmit from "../Components/FormSubmit";
+import FormSubmit from "../components/FormSubmit";
 import logo from "../assets/logo.png";
 
 const ImportWallet = () => {

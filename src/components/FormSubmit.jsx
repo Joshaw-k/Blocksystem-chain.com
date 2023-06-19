@@ -1,5 +1,3 @@
-import React from "react";
-
 const FormSubmit = ({ keyType, wallet }) => {
   if (keyType === "Phrase") {
     return (
